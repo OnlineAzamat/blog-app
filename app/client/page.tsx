@@ -14,7 +14,7 @@ function ClientPage() {
   
   return (
     <div>
-      {isLoading && "Loading..."}
+      <h1 className="text-4xl font-mono py-6">Client Component</h1>
       {data && data.map((post, index) => {
         return <p key={index}>{post.title}</p>
       })}
