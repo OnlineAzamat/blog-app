@@ -1,8 +1,16 @@
 import { ChildProps } from "@/types"
+import Footer from "./_components/footer";
+import Navbar from "./_components/navbar";
 
-const Layout = ({}: ChildProps) => {
+const Layout = ({children}: ChildProps) => {
   return (
-    <div>Layout</div>
+    <main>
+      <Navbar />
+      <div>
+        {children}
+      </div>
+      <Footer />
+    </main>
   )
 }
 
