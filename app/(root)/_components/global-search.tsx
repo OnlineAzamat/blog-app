@@ -1,5 +1,7 @@
-import { Button } from "@/components/ui/button"
-import { Drawer, DrawerClose, DrawerContent, DrawerDescription, DrawerFooter, DrawerHeader, DrawerTitle, DrawerTrigger } from "@/components/ui/drawer"
+import { Badge } from "@/components/ui/badge"
+import { Drawer, DrawerContent, DrawerTrigger } from "@/components/ui/drawer"
+import { Input } from "@/components/ui/input"
+import { popularCategories } from "@/constants"
 import { Search } from "lucide-react"
 
 const GlobalSearch = () => {
@@ -12,10 +14,17 @@ const GlobalSearch = () => {
         </div>
       </DrawerTrigger>
       <DrawerContent>
-        <DrawerHeader>
-          <DrawerTitle>Are you absolutely sure?</DrawerTitle>
-          <DrawerDescription>This action cannot be undone.</DrawerDescription>
-        </DrawerHeader>
+        <div className="container max-w-6xl mx-auto py-12">
+          <Input className="bg-secondary" placeholder="Type to search blog..." />
+
+          <div className="flex flex-col space-y-2 mt-4">
+            <p className="font-creteRound text-2xl">See posts by categories</p>
+
+            <div className="flex flex-wrap gap-2">
+              {popularCategories.map((item) => <Badge key={item.slug}>{item.name}</Badge>)}
+            </div>
+          </div>
+        </div>
       </DrawerContent>
     </Drawer>
   )

@@ -11,4 +11,13 @@ export const navLinks = [
 export const popularCategories = [
   { name: 'Front end', slug: 'front-end' },
   { name: 'Back end', slug: 'back-end' },
-]
+  { name: 'Full Stack', slug: 'full-stack' },
+  { name: "Sun'iy Intelekt", slug: 'artificial-intelligence' },
+];
+
+export const popularTags = [
+  { name: 'ReactJS', slug: "react-js" },
+  { name: 'Javascript', slug: "java-script" },
+  { name: 'NodeJS', slug: "node-js" },
+  { name: 'NextJS', slug: "next-js" },
+];
