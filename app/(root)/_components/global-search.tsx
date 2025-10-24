@@ -1,7 +1,7 @@
 import { Badge } from "@/components/ui/badge"
 import { Drawer, DrawerContent, DrawerTrigger } from "@/components/ui/drawer"
 import { Input } from "@/components/ui/input"
-import { popularCategories } from "@/constants"
+import { popularCategories, popularTags } from "@/constants"
 import { Search } from "lucide-react"
 
 const GlobalSearch = () => {
@@ -18,10 +18,18 @@ const GlobalSearch = () => {
           <Input className="bg-secondary" placeholder="Type to search blog..." />
 
           <div className="flex flex-col space-y-2 mt-4">
-            <p className="font-creteRound text-2xl">See posts by categories</p>
+            <p className="font-crete text-2xl">See posts by categories</p>
 
             <div className="flex flex-wrap gap-2">
-              {popularCategories.map((item) => <Badge key={item.slug}>{item.name}</Badge>)}
+              {popularCategories.map((item) => <Badge key={item.slug} variant={"secondary"}>{item.name}</Badge>)}
+            </div>
+          </div>
+
+          <div className="flex flex-col space-y-2 mt-4">
+            <p className="font-crete text-2xl">See posts by tags</p>
+
+            <div className="flex flex-wrap gap-2">
+              {popularTags.map((item) => <Badge key={item.slug} variant={"secondary"}>{item.name}</Badge>)}
             </div>
           </div>
         </div>
