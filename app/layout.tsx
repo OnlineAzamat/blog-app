@@ -40,4 +40,4 @@ function RootLayout({ children }: ChildProps) {
 	)
 }
 
-export default RootLayout
+export default RootLayout;
