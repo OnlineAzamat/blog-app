@@ -25,13 +25,12 @@ function BlogCard(blog: IBlog) {
           <Minus />
           <div className="flex items-center gap-2">
             <Clock className="w-5 h-5" />
-            <p>01 min read</p>
+            <p>03 min read</p>
           </div>
         </div>
         {/* Title */}
         <h2 className="text-3xl max-md:text-2xl font-creteRound group-hover:text-blue-500 transition-colors">{blog.title}</h2>
         <p className="text-muted-foreground line-clamp-3">{blog.description}</p>
-
         {/* Author */}
         <div className="flex items-center gap-4">
           <div className="flex items-center gap-2">

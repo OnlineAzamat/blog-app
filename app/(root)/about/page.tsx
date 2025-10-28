@@ -48,16 +48,10 @@ function AboutPage() {
 
 		<div className='max-w-6xl mx-auto mt-12 flex flex-col text-center space-y-4 text-muted-foreground'>
 			<p>
-				If ever a place existed where you could just go crazy creatively, it
-				is definitely your about page. Itâs your chance to show your readers
-				who you really are. Pictures, quotes, inspirational graphics, whatever
-				it is that drives you.. Display it here in a way that only you can.
+				If ever a place existed where you could just go crazy creatively, it is definitely your about page. Itâs your chance to show your readers who you really are. Pictures, quotes, inspirational graphics, whatever it is that drives you.. Display it here in a way that only you can.
 			</p>
 			<p>
-				Iâve included a plugin in the setup of this theme that will make
-				adding columns to your pages and posts a piece of cake. Let creativity
-				take control, and forget about the technical end of things, Iâve got
-				your six.
+				Iâve included a plugin in the setup of this theme that will make adding columns to your pages and posts a piece of cake. Let creativity take control, and forget about the technical end of things, Iâve got your six.
 			</p>
 		</div>
 
