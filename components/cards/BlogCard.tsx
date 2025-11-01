@@ -2,10 +2,21 @@ import { IBlog } from "@/types"
 import { CalendarDays, Clock, Dot, Minus } from "lucide-react"
 import Image from "next/image"
 import { Badge } from "../ui/badge"
+import Link from "next/link"
+import { cn } from "@/lib/utils"
 
-function BlogCard(blog: IBlog) {
+interface Props extends IBlog {
+  isVertical?: boolean
+}
+
+function BlogCard(blog: Props) {
   return (
-    <div className="grid gap-4 group grid-cols-1 md:grid-cols-2">
+    <Link 
+      href={'/'}
+      className={cn(
+        "grid gap-4 group",
+        blog.isVertical ? 'grid-cols-1' : 'grid-cols-1 md:grid-cols-2'
+      )}>
       <div className="relative bg-secondary rounded-md">
         <Image 
           width={650} 
@@ -49,7 +60,7 @@ function BlogCard(blog: IBlog) {
           </div>
         </div>
       </div>
-    </div>
+    </Link>
   )
 }
 
