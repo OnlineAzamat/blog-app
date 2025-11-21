@@ -21,9 +21,9 @@ function BlogsPage() {
       </div>
 
       <div className="grid grid-cols-2 max-md:grid-cols-1 gap-x-4 gap-y-24 mt-24">
-        {blogs.map(blog => (
+        {/* {blogs.map(blog => (
           <BlogCard key={blog.title} {...blog} isVertical />
-        ))}
+        ))} */}
       </div>
     </div>
   )
