@@ -16,6 +16,7 @@ export default function TagBadge({ tagName, tagSlug }: TagBadgeProps) {
     e.stopPropagation();
 
     router.push(`/tags/${tagSlug}`);
+    console.log(tagSlug);
   }
 
   return (

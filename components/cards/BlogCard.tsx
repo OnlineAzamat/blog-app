@@ -7,7 +7,7 @@ import Link from "next/link"
 import { cn, getReadingTime } from "@/lib/utils"
 import { format } from "date-fns"
 
-import TagBadge from "../TagBadge"
+import { Badge } from "../ui/badge"
 
 interface Props extends IBlog {
   isVertical?: boolean
@@ -15,13 +15,11 @@ interface Props extends IBlog {
 
 function BlogCard(blog: Props) {  
   return (
-    <Link 
-      href={`/blogs/${blog.slug}`}
-      className={cn(
-        "grid gap-4 group",
-        blog.isVertical ? 'grid-cols-1' : 'grid-cols-1 md:grid-cols-2'
-      )}>
-      <div className="relative bg-secondary rounded-md">
+    <div className={cn(
+      "grid gap-4 group",
+      blog.isVertical ? 'grid-cols-1' : 'grid-cols-1 md:grid-cols-2'
+    )}>
+      <Link className="block relative bg-secondary rounded-md" href={`/blogs/${blog.slug}`}>
         <Image 
           width={650} 
           height={335} 
@@ -29,23 +27,25 @@ function BlogCard(blog: Props) {
           alt={blog.title} 
           className="px-2 md:px-7 rounded-md group-hover:-translate-y-7 -translate-y-6 transition-all object-cover grayscale group-hover:grayscale-0 max-md:-translate-y-2 max-md:group-hover:-translate-y-3" 
         />
-      </div>
+      </Link>
       <div className="flex flex-col space-y-4">
-        {/* Time info */}
-        <div className="flex items-center gap-4">
-          <div className="flex items-center gap-2">
-            <CalendarDays className="w-5 h-5" />
-            <p>{format(new Date(blog.createdAt), "MMM dd, yyyy")}</p>
+        <Link href={`/blogs/${blog.slug}`}>
+          {/* Time info */}
+          <div className="flex items-center gap-4">
+            <div className="flex items-center gap-2">
+              <CalendarDays className="w-5 h-5" />
+              <p>{format(new Date(blog.createdAt), "MMM dd, yyyy")}</p>
+            </div>
+            <Minus />
+            <div className="flex items-center gap-2">
+              <Clock className="w-5 h-5" />
+              <p>{getReadingTime(blog.content.html)} min read</p>
+            </div>
           </div>
-          <Minus />
-          <div className="flex items-center gap-2">
-            <Clock className="w-5 h-5" />
-            <p>{getReadingTime(blog.content.html)} min read</p>
-          </div>
-        </div>
-        {/* Title */}
-        <h2 className="text-3xl max-md:text-2xl font-creteRound group-hover:text-blue-500 transition-colors">{blog.title}</h2>
-        <p className="text-muted-foreground line-clamp-3">{blog.description}</p>
+          {/* Title */}
+          <h2 className="text-3xl max-md:text-2xl font-creteRound group-hover:text-blue-500 transition-colors">{blog.title}</h2>
+          <p className="text-muted-foreground line-clamp-3">{blog.description}</p>
+        </Link>
         {/* Author */}
         <div className="flex items-center gap-4">
           <div className="flex items-center gap-2">
@@ -59,10 +59,12 @@ function BlogCard(blog: Props) {
             <p>by {blog.author.name}</p>
           </div>
           <Dot />
-          <TagBadge tagName={blog.tag.name} tagSlug={blog.tag.slug} />
+          <Link href={`/tags/${blog.tag.slug}`} className="flex items-center gap-2">
+            <Badge variant={'secondary'}>{blog.tag.name}</Badge>
+          </Link>
         </div>
       </div>
-    </Link>
+    </div>
   )
 }
 

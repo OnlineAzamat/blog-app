@@ -2,7 +2,6 @@ import { Button } from "@/components/ui/button";
 import { ArrowUpRight, CalendarDays, Clock, Facebook, Link2, Linkedin, Minus, Send, Twitter } from "lucide-react";
 import Image from "next/image";
 import parse from "html-react-parser";
-import { content } from "@/constants";
 import Link from "next/link";
 import { getDetailedBlog } from "@/service/blog.service";
 import { getReadingTime } from "@/lib/utils";
