@@ -1,18 +1,22 @@
+"use client"
+
 import { IBlog } from "@/types"
 import { CalendarDays, Clock, Dot, Minus } from "lucide-react"
 import Image from "next/image"
-import { Badge } from "../ui/badge"
 import Link from "next/link"
-import { cn } from "@/lib/utils"
+import { cn, getReadingTime } from "@/lib/utils"
+import { format } from "date-fns"
+
+import TagBadge from "../TagBadge"
 
 interface Props extends IBlog {
   isVertical?: boolean
 }
 
-function BlogCard(blog: Props) {
+function BlogCard(blog: Props) {  
   return (
     <Link 
-      href={'/'}
+      href={`/blogs/${blog.slug}`}
       className={cn(
         "grid gap-4 group",
         blog.isVertical ? 'grid-cols-1' : 'grid-cols-1 md:grid-cols-2'
@@ -31,12 +35,12 @@ function BlogCard(blog: Props) {
         <div className="flex items-center gap-4">
           <div className="flex items-center gap-2">
             <CalendarDays className="w-5 h-5" />
-            <p>{blog.createdAt}</p>
+            <p>{format(new Date(blog.createdAt), "MMM dd, yyyy")}</p>
           </div>
           <Minus />
           <div className="flex items-center gap-2">
             <Clock className="w-5 h-5" />
-            <p>03 min read</p>
+            <p>{getReadingTime(blog.content.html)} min read</p>
           </div>
         </div>
         {/* Title */}
@@ -55,9 +59,7 @@ function BlogCard(blog: Props) {
             <p>by {blog.author.name}</p>
           </div>
           <Dot />
-          <div className="flex items-center gap-2">
-            <Badge variant={'secondary'}>{blog.tag.name}</Badge>
-          </div>
+          <TagBadge tagName={blog.tag.name} tagSlug={blog.tag.slug} />
         </div>
       </div>
     </Link>

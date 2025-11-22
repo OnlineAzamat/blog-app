@@ -11,10 +11,13 @@ export interface IBlog {
   image: { url: string }
   category: ICategoryAndTags
   createdAt: string
+  content: { html: string }
+  slug: string
 }
 
 export interface IAuthor {
 	name: string
+  bio: string
 	image: { url: string }
 }
 

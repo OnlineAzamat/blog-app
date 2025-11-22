@@ -10,6 +10,7 @@ export const getBlogs = async () => {
         id
         title
         description
+        slug
         tag {
           name
           slug
@@ -28,10 +29,46 @@ export const getBlogs = async () => {
           }
         }
         createdAt
+        content {
+          html
+        }
       }
     }
   `;
 
   const { blogs } = await request<{blogs: IBlog[]}>(grapgQLAPI, query);
   return blogs;
+}
+
+export const getDetailedBlog = async (slug: string) => {
+  const query = gql`
+    query MyQuery($slug: String!) {
+      blog(where: { slug: $slug }) {
+        id
+        title
+        slug
+        tag {
+          name
+          slug
+        }
+        image {
+          url
+        }
+        author {
+          name
+          bio
+          image {
+            url
+          }
+        }
+        createdAt
+        content {
+          html
+        }
+      }
+    }
+  `;
+
+  const { blog } = await request<{blog: IBlog}>(grapgQLAPI, query, { slug })
+  return blog;
 }
