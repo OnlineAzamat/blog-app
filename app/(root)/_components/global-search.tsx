@@ -2,9 +2,20 @@ import { Badge } from '@/components/ui/badge'
 import { Drawer, DrawerContent, DrawerTrigger } from '@/components/ui/drawer'
 import { Input } from '@/components/ui/input'
 import { popularCategories, popularTags } from '@/constants'
+import { getBlogsBySearch } from '@/service/search.service'
+import { useDebounce } from '@/tools/debounce'
 import { Search } from 'lucide-react'
+import { useEffect, useState, ChangeEvent } from 'react'
 
 function GlobalSearch() {
+  const [search, setSearch] = useState("");
+  const debounced = useDebounce(search, 400);
+
+  useEffect(() => {
+    if (debounced.trim().length === 0) return;
+    getBlogsBySearch(debounced);
+  }, [debounced]);
+  
 	return (
 		<Drawer>
 			<DrawerTrigger>
@@ -18,6 +29,7 @@ function GlobalSearch() {
 					<Input
 						className='bg-secondary'
 						placeholder='Type to search blog...'
+			      onBlur={(e: ChangeEvent<HTMLInputElement>) => setSearch(e.target.value)}
 					/>
 
 					<div className='flex flex-col space-y-2 mt-4'>
@@ -41,6 +53,12 @@ function GlobalSearch() {
 							))}
 						</div>
 					</div>
+
+          <div className="flex justify-between flex-wrap">
+            {
+
+            }
+          </div>
 				</div>
 			</DrawerContent>
 		</Drawer>

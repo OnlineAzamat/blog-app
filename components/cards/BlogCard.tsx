@@ -1,7 +1,7 @@
 "use client"
 
 import { IBlog } from "@/types"
-import { CalendarDays, Clock, Dot, Minus } from "lucide-react"
+import { CalendarDays, Clock, Dot, Minus, Tag } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
 import { cn, getReadingTime } from "@/lib/utils"
@@ -60,7 +60,11 @@ function BlogCard(blog: Props) {
           </div>
           <Dot />
           <Link href={`/tags/${blog.tag.slug}`} className="flex items-center gap-2">
+            <Tag className="w-3 h-3 me-2" />
             <Badge variant={'secondary'}>{blog.tag.name}</Badge>
+          </Link>
+          <Link href={`/categories/${blog.category.slug}`} className="flex items-center gap-2">
+            <Badge variant={'outline'}>{blog.category.name}</Badge>
           </Link>
         </div>
       </div>
@@ -68,4 +72,4 @@ function BlogCard(blog: Props) {
   )
 }
 
-export default BlogCard
+export default BlogCard;
