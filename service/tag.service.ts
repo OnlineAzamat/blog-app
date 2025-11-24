@@ -1,7 +1,21 @@
-import { IBlog } from "@/types";
+import { IBlog, ICategoryAndTags } from "@/types";
 import request, { gql } from "graphql-request";
 
 const grapgQLAPI: string = process.env.NEXT_PUBLIC_GRAHPCMS_ENDPOINT!;
+
+export const getTags = async () => {
+  const query = gql`
+    query getTags {
+      tags {
+        name
+        slug
+      }
+    }
+  `;
+
+  const { tags } = await request<{ tags: ICategoryAndTags[] }>(grapgQLAPI, query);
+  return tags;
+}
 
 export const getBlogsByTag = async (slug: string) => {
   const query = gql`
