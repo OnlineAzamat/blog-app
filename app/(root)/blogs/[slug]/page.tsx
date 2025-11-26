@@ -74,7 +74,7 @@ async function SlugPage({ params }: { params: { slug: string } }) {
         <div className="flex-1 flex flex-col space-y-4">
           <h2 className="text-3xl font-creteRound">{blog.author.name}</h2>
           <p className="line-clamp-2 text-muted-foreground">{blog.author.bio}</p>
-          <Link href="/" className="flex items-center gap-2 hover:text-blue-500 underline transition-colors">See all posts by this author <ArrowUpRight /></Link>
+          <Link href={`/authors/${blog.author.id}`} className="flex items-center gap-2 hover:text-blue-500 underline transition-colors">See all posts by this author <ArrowUpRight /></Link>
         </div>
       </div>
     </div>

@@ -1,21 +1,24 @@
+import BlogCard from '@/components/cards/BlogCard'
 import { Badge } from '@/components/ui/badge'
 import { Drawer, DrawerClose, DrawerContent, DrawerTrigger } from '@/components/ui/drawer'
 import { Input } from '@/components/ui/input'
 import { popularCategories, popularTags } from '@/constants'
 import { getBlogsBySearch } from '@/service/search.service'
 import { useDebounce } from '@/tools/debounce'
+import { IBlog } from '@/types'
 import { Minus, Search } from 'lucide-react'
 import Link from 'next/link'
 import { useEffect, useState, ChangeEvent } from 'react'
 
 function GlobalSearch() {
   const [search, setSearch] = useState("");
+  const [resSearch, setResSearch] = useState<IBlog[]>([]);
   const debounced = useDebounce(search, 400);
 
   useEffect(() => {
     if (debounced.trim().length === 0) return;
     getBlogsBySearch(debounced)
-      .then((res) => console.log(res))
+      .then((res) => setResSearch(res))
       .catch(err => console.error(err))
   }, [debounced]);
   
@@ -39,8 +42,8 @@ function GlobalSearch() {
             <div className="flex items-center flex-wrap gap-2">
               <p className='font-creteRound text-2xl'>See posts by categories</p>
               <Minus />
-              <Link href={'/categories'} className='text-blue-500 underline hover:opacity-90'>
-                <DrawerClose>See all</DrawerClose>
+              <Link href={'/categories'}>
+                <DrawerClose className='text-blue-500 underline hover:opacity-90'>See all</DrawerClose>
               </Link>
             </div>
 
@@ -58,8 +61,8 @@ function GlobalSearch() {
             <div className="flex items-center flex-wrap gap-2">
 						  <p className='font-creteRound text-2xl'>See posts by tags</p>
               <Minus />
-              <Link href={'/tags'} className='text-blue-500 underline hover:opacity-90'>
-                <DrawerClose>See all</DrawerClose>
+              <Link href={'/tags'}>
+                <DrawerClose className='text-blue-500 underline hover:opacity-90'>See all</DrawerClose>
               </Link>
             </div>
 						<div className='flex flex-wrap gap-2'>
@@ -71,10 +74,22 @@ function GlobalSearch() {
 						</div>
 					</div>
 
-          <div className="flex justify-between flex-wrap">
-            {
+          <hr className='my-4' />
 
+          <div className="flex flex-col gap-3">
+            {
+              resSearch.map((card, idx) => (
+                <BlogCard key={idx} {...card} isVertical={true} />
+              ))
             }
+            <Link href={'/'} className='hover:opacity-80 transition-opacity'>
+              <p className='text-xl line-clamp-1'>Taking control of your daily life is easy when you know how!</p>
+              <p className='text-sm line-clamp-2 dark:text-white/75'>While futurists and fundraisers used to make bullish predictions about artificial general intelligence, they’ve become quieter lately. Peter Thiel.</p>
+            </Link>
+            <Link href={'/'} className=''>
+              <p className='text-xl line-clamp-1'>Taking control of your daily life is easy when you know how!</p>
+              <p className='text-sm line-clamp-2 dark:text-white/75'>While futurists and fundraisers used to make bullish predictions about artificial general intelligence, they’ve become quieter lately. Peter Thiel.</p>
+            </Link>
           </div>
 				</div>
 			</DrawerContent>
