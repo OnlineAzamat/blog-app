@@ -1,26 +1,37 @@
-import BlogCard from '@/components/cards/BlogCard'
+import { Loader2, Minus, Search } from 'lucide-react'
+import Link from 'next/link'
+import { useState, ChangeEvent } from 'react'
+import { debounce } from "lodash"
+
+// === Components ===
+import SearchCard from '@/components/cards/search'
 import { Badge } from '@/components/ui/badge'
 import { Drawer, DrawerClose, DrawerContent, DrawerTrigger } from '@/components/ui/drawer'
 import { Input } from '@/components/ui/input'
+import { Separator } from '@/components/ui/separator'
 import { popularCategories, popularTags } from '@/constants'
 import { getBlogsBySearch } from '@/service/search.service'
-import { useDebounce } from '@/tools/debounce'
 import { IBlog } from '@/types'
-import { Minus, Search } from 'lucide-react'
-import Link from 'next/link'
-import { useEffect, useState, ChangeEvent } from 'react'
 
 function GlobalSearch() {
-  const [search, setSearch] = useState("");
-  const [resSearch, setResSearch] = useState<IBlog[]>([]);
-  const debounced = useDebounce(search, 400);
+  const [isLoading, setIsLoading] = useState(false);
+  const [blogs, setBlogs] = useState<IBlog[]>([]);
 
-  useEffect(() => {
-    if (debounced.trim().length === 0) return;
-    getBlogsBySearch(debounced)
-      .then((res) => setResSearch(res))
-      .catch(err => console.error(err))
-  }, [debounced]);
+  const handleSearch = async (e: ChangeEvent<HTMLInputElement>) => {
+    const text = e.target.value.toLowerCase();
+
+    if (text && text.length > 2) {
+      setIsLoading(true)
+      const data = await getBlogsBySearch(text);
+      setBlogs(blogs)
+      setIsLoading(false)
+    } else {
+      setBlogs([])
+      setIsLoading(false)
+    }
+  };
+
+  const debounceSearch = debounce(handleSearch, 400);
   
 	return (
 		<Drawer>
@@ -35,8 +46,16 @@ function GlobalSearch() {
 					<Input
 						className='bg-secondary'
 						placeholder='Type to search blog...'
-			      onBlur={(e: ChangeEvent<HTMLInputElement>) => setSearch(e.target.value)}
+			      onBlur={debounceSearch}
+            disabled={isLoading}
 					/>
+
+          {isLoading ? <Loader2 className='mt-4 mx-auto animate-spin' /> : null}
+          {blogs.length ? <div className='text-2xl font-creteRound mt-8'>{blogs.length} results found.</div> : null }
+          <div className="grid grid-cols-2 md:grid-cols-4 xl:grid-cols-6 mt-2">
+            {blogs && blogs.map(blog => <SearchCard key={blog.slug} {...blog} />) }
+          </div>
+          {blogs.length ? <Separator className='mt-3' /> : null}
 
 					<div className='flex flex-col space-y-2 mt-4'>
             <div className="flex items-center flex-wrap gap-2">
@@ -46,7 +65,6 @@ function GlobalSearch() {
                 <DrawerClose className='text-blue-500 underline hover:opacity-90'>See all</DrawerClose>
               </Link>
             </div>
-
             
 						<div className='flex flex-wrap gap-2'>
 							{popularCategories.map(item => (
@@ -73,24 +91,6 @@ function GlobalSearch() {
 							))}
 						</div>
 					</div>
-
-          <hr className='my-4' />
-
-          <div className="flex flex-col gap-3">
-            {
-              resSearch.map((card, idx) => (
-                <BlogCard key={idx} {...card} isVertical={true} />
-              ))
-            }
-            <Link href={'/'} className='hover:opacity-80 transition-opacity'>
-              <p className='text-xl line-clamp-1'>Taking control of your daily life is easy when you know how!</p>
-              <p className='text-sm line-clamp-2 dark:text-white/75'>While futurists and fundraisers used to make bullish predictions about artificial general intelligence, they’ve become quieter lately. Peter Thiel.</p>
-            </Link>
-            <Link href={'/'} className=''>
-              <p className='text-xl line-clamp-1'>Taking control of your daily life is easy when you know how!</p>
-              <p className='text-sm line-clamp-2 dark:text-white/75'>While futurists and fundraisers used to make bullish predictions about artificial general intelligence, they’ve become quieter lately. Peter Thiel.</p>
-            </Link>
-          </div>
 				</div>
 			</DrawerContent>
 		</Drawer>
