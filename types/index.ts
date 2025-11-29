@@ -15,6 +15,11 @@ export interface IBlog {
   slug: string
 }
 
+export interface IArchivedBlogs {
+  year: string
+  blogs: IBlog[]
+}
+
 export interface IAuthor {
   id: string
 	name: string
