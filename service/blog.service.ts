@@ -1,5 +1,6 @@
 import { IArchivedBlogs, IBlog } from "@/types";
 import request, { gql } from "graphql-request";
+import { cache } from "react";
 
 const grapgQLAPI: string = process.env.NEXT_PUBLIC_GRAHPCMS_ENDPOINT!;
 
@@ -11,7 +12,7 @@ export const getBlogs = async () => {
         title
         description
         slug
-        tag {
+        tags {
           name
           slug
         }
@@ -72,14 +73,14 @@ export const getArchivedBlogs = async () => {
   return results;
 }
 
-export const getDetailedBlog = async (slug: string) => {
+export const getDetailedBlog = cache(async (slug: string) => {
   const query = gql`
     query GetDetailedBlog($slug: String!) {
       blog(where: { slug: $slug }) {
         id
         title
         slug
-        tag {
+        tags {
           name
           slug
         }
@@ -104,4 +105,4 @@ export const getDetailedBlog = async (slug: string) => {
 
   const { blog } = await request<{blog: IBlog}>(grapgQLAPI, query, { slug })
   return blog;
-}
+})

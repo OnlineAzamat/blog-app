@@ -1,14 +1,19 @@
 import AuthorCard from "@/components/cards/author"
 import { getAuthors } from "@/service/author.service"
 import { Dot, Home } from "lucide-react"
+import { Metadata } from "next"
 import Image from "next/image"
 import Link from "next/link"
+
+export const metadata: Metadata = {
+  title: "About us"
+}
 
 async function AboutPage() {
   const authors = await getAuthors();
   
 	return <div className="max-w-6xl mx-auto">
-		<div className="relative min-h-72 flex items-center justify-center flex-col">
+		<div className="relative mt-24 lg:pt-16 md:pt-12 max-sm:pt-4 flex items-center justify-center flex-col mb-8">
 			<h2 className="text-center text-4xl section-title font-creteRound"><span>About</span></h2>
 
 			<div className="flex gap-1 items-center mt-4">
@@ -19,7 +24,7 @@ async function AboutPage() {
 			</div>
 		</div>
 
-		<h1 className="text-center text-4xl font-creteRound">We are the Yaku, <br /> Team of content writers and designers.</h1>
+		<h1 className="text-center text-4xl font-creteRound">We are the Aklog, <br /> Team of content writers and designers.</h1>
 
 		<div className="grid grid-cols-4 gap-4 min-h-96 mt-6">
 			<div className="col-span-2 max-md:col-span-4 relative h-80">

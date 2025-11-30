@@ -12,7 +12,7 @@ export const getBlogsBySearch = async (title: string) => {
         title
         description
         slug
-        tag {
+        tags {
           name
           slug
         }

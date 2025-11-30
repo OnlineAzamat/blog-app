@@ -59,10 +59,6 @@ function BlogCard(blog: Props) {
             <p>by {blog.author.name}</p>
           </div>
           <Dot />
-          <Link href={`/tags/${blog.tag.slug}`} className="flex items-center gap-2">
-            <Tag className="w-3 h-3 me-2" />
-            <Badge variant={'secondary'}>{blog.tag.name}</Badge>
-          </Link>
           <Link href={`/categories/${blog.category.slug}`} className="flex items-center gap-2">
             <Badge variant={'outline'}>{blog.category.name}</Badge>
           </Link>

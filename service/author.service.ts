@@ -40,7 +40,7 @@ export const getDetailedAuthor = async (id: string) => {
           content {
             html
           }
-          tag {
+          tags {
             name
             slug
           }

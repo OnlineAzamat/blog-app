@@ -2,6 +2,18 @@ import BlogCard from "@/components/cards/BlogCard";
 import { getDetailedAuthor } from "@/service/author.service"
 import Image from "next/image";
 
+export async function generateMetadata({ params }: { params: { slug: string } }) {
+  const author = await getDetailedAuthor(params.slug);
+  
+  return {
+    title: author.name,
+    desciption: author.bio,
+    openGraph: {
+      images: author.image.url
+    }
+  }
+}
+
 async function Page({ params }: { params: { id: string } }) {
   const author = await getDetailedAuthor(params.id);
   

@@ -5,9 +5,13 @@ import { navLinks } from '@/constants'
 import { cn } from '@/lib/utils'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import GlobalSearch from './global-search'
+import { ReactNode } from 'react'
 
-function Navbar() {
+interface NavbarProps {
+  searchSlot: ReactNode
+}
+
+function Navbar({ searchSlot }: NavbarProps) {
 	const pathname = usePathname()
 
 	return (
@@ -15,7 +19,7 @@ function Navbar() {
 			<div className='container max-w-6xl mx-auto h-24 w-full flex items-center justify-between'>
 				{/* Logo */}
 				<Link href={'/'}>
-					<h1 className='text-4xl font-creteRound'>Sammi</h1>
+					<h1 className='text-4xl font-creteRound'>Aklog</h1>
 				</Link>
 				{/* Nav links */}
 				<div className='gap-2 hidden md:flex'>
@@ -34,7 +38,7 @@ function Navbar() {
 				</div>
 				{/* Search */}
 				<div className='flex items-center gap-1'>
-					<GlobalSearch />
+          {searchSlot}
 					<ModeToggle />
 				</div>
 			</div>

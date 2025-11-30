@@ -6,7 +6,7 @@ export interface IBlog {
   id: string
 	title: string
 	description: string
-  tag: ICategoryAndTags
+  tags: ICategoryAndTags[]
   author: IAuthor
   image: { url: string }
   category: ICategoryAndTags
@@ -31,4 +31,5 @@ export interface IAuthor {
 export interface ICategoryAndTags {
   name: string
   slug: string
+  blogs: IBlog[]
 }
