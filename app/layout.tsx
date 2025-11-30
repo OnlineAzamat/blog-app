@@ -4,6 +4,8 @@ import type { Metadata } from 'next'
 import { Crete_Round, Work_Sans } from 'next/font/google'
 import { Toaster } from '@/components/ui/sonner'
 import NextTopLoader from "nextjs-toploader"
+import { Analytics } from "@vercel/analytics/next"
+
 import './globals.css'
 
 const creteRound = Crete_Round({
@@ -52,6 +54,7 @@ function RootLayout({ children }: ChildProps) {
           <NextTopLoader showSpinner={false} />
 					{children}
           <Toaster position='top-center' />
+          <Analytics />
 				</ThemeProvider>
 			</body>
 		</html>
