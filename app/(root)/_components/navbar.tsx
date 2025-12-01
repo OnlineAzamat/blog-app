@@ -3,6 +3,7 @@
 import ModeToggle from '@/components/shared/mode-toggle'
 import { navLinks } from '@/constants'
 import { cn } from '@/lib/utils'
+import { Menu } from 'lucide-react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { ReactNode } from 'react'
@@ -12,17 +13,17 @@ interface NavbarProps {
 }
 
 function Navbar({ searchSlot }: NavbarProps) {
-	const pathname = usePathname()
+	const pathname = usePathname();
 
 	return (
-		<div className='h-24 backdrop-blur-sm border-b fixed z-40 inset-0 bg-background'>
-			<div className='container max-w-6xl mx-auto h-24 w-full flex items-center justify-between'>
+		<div className='h-24 max-sm:h-16 backdrop-blur-sm border-b fixed z-40 inset-0 bg-background'>
+			<div className='container max-w-6xl w-full h-24 max-sm:h-16 mx-auto flex items-center justify-between'>
 				{/* Logo */}
 				<Link href={'/'}>
-					<h1 className='text-4xl font-creteRound'>Aklog</h1>
+					<h1 className='text-4xl max-sm:text-3xl font-creteRound'>Aklog</h1>
 				</Link>
 				{/* Nav links */}
-				<div className='gap-2 hidden md:flex'>
+				<div className='gap-2 hidden md:flex '>
 					{navLinks.map(nav => (
 						<Link
 							key={nav.route}
@@ -41,6 +42,9 @@ function Navbar({ searchSlot }: NavbarProps) {
           {searchSlot}
 					<ModeToggle />
 				</div>
+        {/* <button className='hover:bg-blue-400/20 cursor-pointer rounded-sm transition-colors flex items-center gap-1 px-1 py-1'>
+          <Menu className='w-6 h-6' />
+        </button> */}
 			</div>
 		</div>
 	)

@@ -25,7 +25,7 @@ function BlogCard(blog: Props) {
           height={335} 
           src={blog.image.url}
           alt={blog.title} 
-          className="px-2 md:px-7 rounded-md group-hover:-translate-y-7 -translate-y-6 transition-all object-cover grayscale group-hover:grayscale-0 max-md:-translate-y-2 max-md:group-hover:-translate-y-3" 
+          className="px-2 md:px-7 rounded-2xl group-hover:-translate-y-7 -translate-y-6 transition-all object-cover grayscale group-hover:grayscale-0 max-md:-translate-y-2 max-md:group-hover:-translate-y-3" 
         />
       </Link>
       <div className="flex flex-col space-y-4">
@@ -43,11 +43,11 @@ function BlogCard(blog: Props) {
             </div>
           </div>
           {/* Title */}
-          <h2 className="text-3xl max-md:text-2xl font-creteRound group-hover:text-blue-500 transition-colors">{blog.title}</h2>
-          <p className="text-muted-foreground line-clamp-3">{blog.description}</p>
+          <h2 className="text-3xl max-md:text-2xl max-sm:text-xl max-sm:line-clamp-1 font-creteRound group-hover:text-blue-500 transition-colors">{blog.title}</h2>
+          <p className="text-muted-foreground text-sm sm:text-base line-clamp-3">{blog.description}</p>
         </Link>
         {/* Author */}
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-1 sm:gap-4">
           <div className="flex items-center gap-2">
             <Image 
               src={blog.author.image?.url}
@@ -56,7 +56,7 @@ function BlogCard(blog: Props) {
               height={30}
               className="object-cover rounded-sm"
             />
-            <p>by {blog.author.name}</p>
+            <p className="text-sm sm:text-base">by {blog.author.name}</p>
           </div>
           <Dot />
           <Link href={`/categories/${blog.category.slug}`} className="flex items-center gap-2">
