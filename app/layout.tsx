@@ -32,11 +32,15 @@ export const metadata: Metadata = {
 		type: 'website',
 		url: 'https://blog.yakubbaev.dev',
 		locale: 'en_EN',
-		images: 'https://media.graphassets.com/kXL006lyRnW46IKTHdHs',
+		images: 'https://blog.yakubbaev.dev/blog-logo.png',
 		countryName: 'Uzbekistan',
 		siteName: 'Aklog',
 		emails: 'yakubbaevdev@gmail.com',
 	},
+  twitter: {
+    card: 'summary_large_image',
+    images: 'https://blog.yakubbaev.dev/blog-logo.png',
+  }
 }
 
 function RootLayout({ children }: ChildProps) {

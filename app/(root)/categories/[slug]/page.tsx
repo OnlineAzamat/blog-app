@@ -31,9 +31,13 @@ const TagPage = async ({ params }: { params: { slug: string } }) => {
       </div>
 
       <div className="grid grid-cols-2 max-md:grid-cols-1 gap-x-4 gap-y-24 mt-24">
-        {category.blogs.map(blog => (
-          <BlogCard key={blog.title} {...blog} isVertical />
-        ))}
+        {category.blogs ? 
+          category.blogs.map(blog => (
+            <BlogCard key={blog.title} {...blog} isVertical />
+          ))
+          :
+          <h1>No blogs related to ReactJS{category.name} found</h1>
+        }
       </div>
     </div>
   )

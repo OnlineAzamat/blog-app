@@ -4,7 +4,6 @@ import { getBlogs } from "@/service/blog.service"
 
 async function HomePage() {
   const blogs = await getBlogs();
-  console.log(blogs)
   
 	return <div className="max-w-6xl mx-auto">
 		<div className="relative mt-24 lg:pt-16 md:pt-12 max-sm:pt-4 flex items-center justify-center">
@@ -16,9 +15,13 @@ async function HomePage() {
 		</h2>
 
 		<div className="flex flex-col space-y-24 mt-24">
-			{blogs.map((blog) => (
-				<BlogCard key={blog.title} {...blog} />
-			))}
+			{blogs ? 
+        blogs.map((blog) => (
+          <BlogCard key={blog.title} {...blog} />
+        ))
+        :
+        <h1>Blogs not found.</h1>
+      }
 		</div>
 	</div>
 }
