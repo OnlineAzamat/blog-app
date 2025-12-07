@@ -6,10 +6,11 @@ import { getDetailedBlog } from "@/service/blog.service";
 import { getReadingTime } from "@/lib/utils";
 import { format } from "date-fns";
 import ShareBtns from "../../_components/share-btns";
+import ViewCounter from "@/components/shared/view-counter";
 
 export async function generateMetadata({ params }: { params: { slug: string } }) {
   const blog = await getDetailedBlog(params.slug);
-  
+
   return {
     title: blog.title,
     desciption: blog.description,
@@ -21,7 +22,7 @@ export async function generateMetadata({ params }: { params: { slug: string } })
 
 async function SlugPage({ params }: { params: { slug: string } }) {
   const blog = await getDetailedBlog(params.slug);
-  
+
   return (
     <div className="pt-[15vh] max-w-5xl mx-auto">
       <h1 className="lg:text-6xl md:text-5xl text-4xl font-creteRound">{blog.title}</h1>
@@ -47,9 +48,11 @@ async function SlugPage({ params }: { params: { slug: string } }) {
           <CalendarDays className="w-5 h-5" />
           <p>{format(new Date(blog.createdAt), "MMM dd, yyyy")}</p>
         </div>
+        <Minus />
+        <ViewCounter views={blog.views} slug={blog.slug} />
       </div>
 
-      <Image 
+      <Image
         src={blog.image.url}
         alt={blog.title}
         width={`1120`}

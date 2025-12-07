@@ -1,11 +1,11 @@
 export interface ChildProps {
-	children: React.ReactNode
+  children: React.ReactNode
 }
 
 export interface IBlog {
   id: string
-	title: string
-	description: string
+  title: string
+  description: string
   tags: ICategoryAndTags[]
   author: IAuthor
   image: { url: string }
@@ -13,6 +13,7 @@ export interface IBlog {
   createdAt: string
   content: { html: string }
   slug: string
+  views: number
 }
 
 export interface IArchivedBlogs {
@@ -22,9 +23,9 @@ export interface IArchivedBlogs {
 
 export interface IAuthor {
   id: string
-	name: string
+  name: string
   bio: string
-	image: { url: string }
+  image: { url: string }
   blogs: IBlog[]
 }
 

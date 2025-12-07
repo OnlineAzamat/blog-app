@@ -33,11 +33,12 @@ export const getBlogs = async () => {
         content {
           html
         }
+        views
       }
     }
   `;
 
-  const { blogs } = await request<{blogs: IBlog[]}>(grapgQLAPI, queryPublished);
+  const { blogs } = await request<{ blogs: IBlog[] }>(grapgQLAPI, queryPublished);
   return blogs;
 }
 
@@ -53,7 +54,7 @@ export const getArchivedBlogs = async () => {
     }
   `;
 
-  const { blogs } = await request<{blogs: IBlog[]}>(grapgQLAPI, queryArchived, {}, { cache: 'no-store' });
+  const { blogs } = await request<{ blogs: IBlog[] }>(grapgQLAPI, queryArchived, {}, { cache: 'no-store' });
   /**
    * {blogs} - serverden kelgen bloglardı {year} boyınsha filtirlew ushın Array.Reduce isletildi
    */
@@ -99,10 +100,11 @@ export const getDetailedBlog = cache(async (slug: string) => {
         content {
           html
         }
+        views
       }
     }
   `;
 
-  const { blog } = await request<{blog: IBlog}>(grapgQLAPI, query, { slug })
+  const { blog } = await request<{ blog: IBlog }>(grapgQLAPI, query, { slug });
   return blog;
 })
