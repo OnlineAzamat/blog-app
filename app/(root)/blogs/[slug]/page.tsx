@@ -24,10 +24,10 @@ async function SlugPage({ params }: { params: { slug: string } }) {
   const blog = await getDetailedBlog(params.slug);
 
   return (
-    <div className="pt-[15vh] max-w-5xl mx-auto">
-      <h1 className="lg:text-6xl md:text-5xl text-4xl font-creteRound">{blog.title}</h1>
+    <div className="pt-[15vh] max-sm:pt-[10vh] max-w-5xl mx-auto flex flex-col">
+      <h1 className="lg:text-6xl md:text-5xl text-4xl max-md:text-2xl font-serif order-1">{blog.title}</h1>
 
-      <div className="flex items-center flex-wrap max-md:justify-center gap-4 mt-4">
+      <div className="flex items-center flex-wrap max-md:justify-between gap-4 max-sm:gap-2 mt-4 order-2">
         <div className="flex items-center gap-2">
           <Image
             src={blog.author.image.url}
@@ -36,19 +36,19 @@ async function SlugPage({ params }: { params: { slug: string } }) {
             height={30}
             className="object-cover rounded-sm"
           />
-          <p>by {blog.author.name}</p>
+          <p className="max-md:text-xs">by {blog.author.name}</p>
         </div>
-        <Minus />
+        <Minus className="max-md:hidden" />
         <div className="flex items-center gap-2">
-          <Clock className="w-5 h-5" />
-          <p>{getReadingTime(blog.content.html)} min read</p>
+          <Clock className="w-5 h-5 max-md:w-4 max-md:h-4" />
+          <p className="max-md:text-xs">{getReadingTime(blog.content.html)} min read</p>
         </div>
-        <Minus />
+        <Minus className="max-md:hidden" />
         <div className="flex items-center gap-2">
-          <CalendarDays className="w-5 h-5" />
-          <p>{format(new Date(blog.createdAt), "MMM dd, yyyy")}</p>
+          <CalendarDays className="w-5 h-5 max-md:w-4 max-md:h-4" />
+          <p className="max-md:text-xs">{format(new Date(blog.createdAt), "MMM dd, yyyy")}</p>
         </div>
-        <Minus />
+        <Minus className="max-md:hidden" />
         <ViewCounter views={blog.views} slug={blog.slug} />
       </div>
 
@@ -57,10 +57,10 @@ async function SlugPage({ params }: { params: { slug: string } }) {
         alt={blog.title}
         width={`1120`}
         height={`595`}
-        className="mt-4 rounded-md"
+        className="mt-4 rounded-md order-3 max-md:order-3"
       />
 
-      <div className="flex md:gap-12 max-md:flex-col-reverse mt-12 relative">
+      <div className="flex md:gap-12 max-md:flex-col-reverse mt-12 relative order-4 max-md:order-4">
         <div className="flex flex-col space-y-3">
           <div className="sticky top-36">
             <p className="text-lg uppercase text-muted-foreground">Share</p>
@@ -79,8 +79,7 @@ async function SlugPage({ params }: { params: { slug: string } }) {
         </div>
       </div>
 
-
-      <div className="flex mt-6 gap-6 items-center max-md:flex-col">
+      <div className="flex mt-6 gap-6 items-center max-md:flex-col order-5 max-md:order-5">
         <Image
           src={blog.author.image.url}
           alt="author"
@@ -90,7 +89,7 @@ async function SlugPage({ params }: { params: { slug: string } }) {
         />
 
         <div className="flex-1 flex flex-col space-y-4">
-          <h2 className="text-3xl font-creteRound">{blog.author.name}</h2>
+          <h2 className="text-3xl font-sans">{blog.author.name}</h2>
           <p className="line-clamp-2 text-muted-foreground">{blog.author.bio}</p>
           <Link href={`/authors/${blog.author.id}`} className="flex items-center gap-2 hover:text-blue-500 underline transition-colors">See all posts by this author <ArrowUpRight /></Link>
         </div>

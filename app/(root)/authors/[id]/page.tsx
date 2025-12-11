@@ -4,7 +4,7 @@ import Image from "next/image";
 
 export async function generateMetadata({ params }: { params: { slug: string } }) {
   const author = await getDetailedAuthor(params.slug);
-  
+
   return {
     title: author.name,
     desciption: author.bio,
@@ -16,11 +16,11 @@ export async function generateMetadata({ params }: { params: { slug: string } })
 
 async function Page({ params }: { params: { id: string } }) {
   const author = await getDetailedAuthor(params.id);
-  
+
   return (
     <div className="max-w-6xl mx-auto">
       <div className="mt-24 lg:pt-16 md:pt-12 max-sm:pt-4 flex gap-6 items-center max-md:flex-col">
-        <Image 
+        <Image
           src={author.image.url}
           alt={author.name}
           width='200'
@@ -31,12 +31,12 @@ async function Page({ params }: { params: { id: string } }) {
           <p className="text-muted-foreground">
             <span className="font-bold text-white">{author.blogs.length}</span> Published posts
           </p>
-          <h2 className="text-3xl font-creteRound">{author.name}</h2>
+          <h2 className="text-3xl font-sans">{author.name}</h2>
           <p className="line-clamp-2 text-muted-foreground max-w-xl">{author.bio}</p>
         </div>
       </div>
 
-      <h2 className="text-center text-4xl section-title font-creteRound my-12">
+      <h2 className="text-center text-4xl section-title font-sans my-12">
         <span>Published posts</span>
       </h2>
 

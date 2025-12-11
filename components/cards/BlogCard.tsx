@@ -20,12 +20,12 @@ function BlogCard(blog: Props) {
       blog.isVertical ? 'grid-cols-1' : 'grid-cols-1 md:grid-cols-2'
     )}>
       <Link className="block relative bg-secondary rounded-md" href={`/blogs/${blog.slug}`}>
-        <Image 
-          width={650} 
-          height={335} 
+        <Image
+          width={650}
+          height={335}
           src={blog.image.url}
-          alt={blog.title} 
-          className="px-2 md:px-7 rounded-2xl group-hover:-translate-y-7 -translate-y-6 transition-all object-cover grayscale group-hover:grayscale-0 max-md:-translate-y-2 max-md:group-hover:-translate-y-3" 
+          alt={blog.title}
+          className="px-2 md:px-7 rounded-2xl group-hover:-translate-y-7 -translate-y-6 transition-all object-cover grayscale group-hover:grayscale-0 max-md:-translate-y-2 max-md:group-hover:-translate-y-3"
         />
       </Link>
       <div className="flex flex-col space-y-4">
@@ -43,13 +43,13 @@ function BlogCard(blog: Props) {
             </div>
           </div>
           {/* Title */}
-          <h2 className="text-3xl max-md:text-2xl max-sm:text-xl max-sm:line-clamp-1 font-creteRound group-hover:text-blue-500 transition-colors">{blog.title}</h2>
-          <p className="text-muted-foreground text-sm sm:text-base line-clamp-3">{blog.description}</p>
+          <h2 className="text-3xl max-md:text-2xl max-sm:text-xl max-sm:line-clamp-1 font-serif group-hover:text-blue-500 transition-colors">{blog.title}</h2>
+          <p className="text-muted-foreground text-sm sm:text-base line-clamp-3 font-serif">{blog.description}</p>
         </Link>
         {/* Author */}
         <div className="flex items-center gap-1 sm:gap-4">
           <div className="flex items-center gap-2">
-            <Image 
+            <Image
               src={blog.author.image?.url}
               alt={blog.author.name}
               width={30}

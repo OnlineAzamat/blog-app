@@ -10,21 +10,21 @@ export const metadata: Metadata = {
 
 async function ArchivePage() {
   const years = await getArchivedBlogs();
-  
+
   return (
     <div className="max-w-6xl mx-auto">
       <div className="relative mt-24 lg:pt-16 md:pt-12 max-sm:pt-4 flex items-center justify-end flex-col">
         <p className="text-lg text-muted-foreground">Showing posts from</p>
-        <h2 className="text-center text-4xl section-title font-creteRound mt-2"><span>Archive</span></h2>
+        <h2 className="text-center text-4xl section-title font-sans mt-2"><span>Archive</span></h2>
 
         <div className="flex gap-1 items-center mt-4">
           <Home className="w-4 h-4" />
-          <Link 
+          <Link
             href={'/'}
             className="opacity-90 hover:underline hover:opacity-100"
           >Home</Link>
           <Dot />
-          <Link 
+          <Link
             href={'/blogs'}
             className="opacity-90 hover:underline hover:opacity-100"
           >Blogs</Link>
@@ -35,7 +35,7 @@ async function ArchivePage() {
       {years.map((year) => (
         <div key={year.year} className="flex flex-col space-y-3 mt-8">
           <div className="relative">
-            <span className="text-5xl font-creteRound relative z-20">{year.year}</span>
+            <span className="text-5xl font-sans relative z-20">{year.year}</span>
             <Archive className="absolute w-16 h-16 -translate-x-4 -translate-y-12 opacity-10" />
           </div>
           <div className="flex flex-col space-y-2 mt-8">

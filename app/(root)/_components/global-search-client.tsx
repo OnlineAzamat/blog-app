@@ -44,39 +44,39 @@ function GlobalSearchClient({ tags, categories }: GlobalSearchClientProps) {
 
   return (
     <Drawer>
-			<DrawerTrigger>
-				<div className='hover:bg-blue-400/20 cursor-pointer rounded-sm transition-colors flex items-center gap-1 px-3 py-2'>
-					<span className='hidden md:flex'>Search</span>
-					<Search className='w-4 h-4' />
-				</div>
-			</DrawerTrigger>
-			<DrawerContent>
-				<div className='container max-w-6xl mx-auto py-12'>
-					<Input
-						className='bg-secondary'
-						placeholder='Type to search blog...'
-			      onBlur={debounceSearch}
+      <DrawerTrigger>
+        <div className='hover:bg-blue-400/20 cursor-pointer rounded-sm transition-colors flex items-center gap-1 px-3 py-2'>
+          <span className='hidden md:flex'>Search</span>
+          <Search className='w-4 h-4' />
+        </div>
+      </DrawerTrigger>
+      <DrawerContent>
+        <div className='container max-w-6xl mx-auto py-12'>
+          <Input
+            className='bg-secondary'
+            placeholder='Type to search blog...'
+            onBlur={debounceSearch}
             disabled={isLoading}
-					/>
+          />
 
           {isLoading ? <Loader2 className='mt-4 mx-auto animate-spin' /> : null}
-          {blogs.length ? <div className='text-2xl font-creteRound mt-8'>{blogs.length} results found.</div> : null }
+          {blogs.length ? <div className='text-2xl font-sans mt-8'>{blogs.length} results found.</div> : null}
           <div className="grid grid-cols-2 md:grid-cols-4 xl:grid-cols-6 mt-2">
-            {blogs && blogs.map(blog => <SearchCard key={blog.slug} {...blog} />) }
+            {blogs && blogs.map(blog => <SearchCard key={blog.slug} {...blog} />)}
           </div>
           {blogs.length ? <Separator className='mt-3' /> : null}
 
-					<div className='flex flex-col space-y-2 mt-4'>
+          <div className='flex flex-col space-y-2 mt-4'>
             <div className="flex items-center flex-wrap gap-2">
-              <p className='font-creteRound text-2xl'>See posts by categories</p>
+              <p className='font-sans text-2xl'>See posts by categories</p>
               <Minus />
               <Link href={'/categories'}>
                 <DrawerClose className='text-blue-500 underline hover:opacity-90'>See all</DrawerClose>
               </Link>
             </div>
-            
-						<div className='flex flex-wrap gap-2'>
-							{categories.map(cat => (
+
+            <div className='flex flex-wrap gap-2'>
+              {categories.map(cat => (
                 <Link key={cat.slug} href={`/categories/${cat.slug}`}>
                   <DrawerClose>
                     <Badge variant={'secondary'}>
@@ -84,20 +84,20 @@ function GlobalSearchClient({ tags, categories }: GlobalSearchClientProps) {
                     </Badge>
                   </DrawerClose>
                 </Link>
-							))}
-						</div>
-					</div>
+              ))}
+            </div>
+          </div>
 
-					<div className='flex flex-col space-y-2 mt-4'>
+          <div className='flex flex-col space-y-2 mt-4'>
             <div className="flex items-center flex-wrap gap-2">
-						  <p className='font-creteRound text-2xl'>See posts by tags</p>
+              <p className='font-sans text-2xl'>See posts by tags</p>
               <Minus />
               <Link href={'/tags'}>
                 <DrawerClose className='text-blue-500 underline hover:opacity-90'>See all</DrawerClose>
               </Link>
             </div>
-						<div className='flex flex-wrap gap-2'>
-							{tags.map(tag => (
+            <div className='flex flex-wrap gap-2'>
+              {tags.map(tag => (
                 <Link key={tag.slug} href={`/tags/${tag.slug}`}>
                   <DrawerClose>
                     <Badge variant={'secondary'}>
@@ -105,12 +105,12 @@ function GlobalSearchClient({ tags, categories }: GlobalSearchClientProps) {
                     </Badge>
                   </DrawerClose>
                 </Link>
-							))}
-						</div>
-					</div>
-				</div>
-			</DrawerContent>
-		</Drawer>
+              ))}
+            </div>
+          </div>
+        </div>
+      </DrawerContent>
+    </Drawer>
   )
 }
 

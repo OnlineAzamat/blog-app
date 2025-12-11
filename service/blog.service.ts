@@ -105,6 +105,6 @@ export const getDetailedBlog = cache(async (slug: string) => {
     }
   `;
 
-  const { blog } = await request<{ blog: IBlog }>(grapgQLAPI, query, { slug });
+  const { blog } = await request<{ blog: IBlog }>(grapgQLAPI, query, { slug }, { cache: 'no-store' });
   return blog;
 })

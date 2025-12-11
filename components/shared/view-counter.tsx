@@ -41,8 +41,8 @@ const ViewCounter = ({ slug, views: initialViews }: ViewCounterProps) => {
 
   return (
     <div className="flex items-center gap-2">
-      <Eye className="w-5 h-5" />
-      <p>{views}</p>
+      <Eye className="w-5 h-5 max-md:w-4 max-md:h-4" />
+      <p className="max-md:text-xs">{views}</p>
     </div>
   );
 };

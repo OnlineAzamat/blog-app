@@ -4,26 +4,26 @@ import { getBlogs } from "@/service/blog.service"
 
 async function HomePage() {
   const blogs = await getBlogs();
-  
-	return <div className="max-w-6xl mx-auto">
-		<div className="relative mt-24 lg:pt-16 md:pt-12 max-sm:pt-4 flex items-center justify-center">
-			<h1 className="text-3xl md:text-4xl lg:text-5xl font-creteRound text-center max-w-2xl">Taking control of your daily life is easy when you know how!</h1>
-			<BgArrow />
-		</div>
-		<h2 className="text-center text-4xl section-title font-creteRound">
-			<span>Recent posts</span>
-		</h2>
 
-		<div className="flex flex-col space-y-24 mt-24">
-			{blogs ? 
+  return <div className="max-w-6xl mx-auto">
+    <div className="relative mt-24 lg:pt-16 md:pt-12 max-sm:pt-4 flex items-center justify-center">
+      <h1 className="text-3xl md:text-4xl lg:text-5xl font-serif text-center max-w-2xl">Taking control of your daily life is easy when you know how!</h1>
+      <BgArrow />
+    </div>
+    <h2 className="my-12 text-center text-4xl section-title font-serif">
+      <span>Recent posts</span>
+    </h2>
+
+    <div className="flex flex-col space-y-24 mt-24">
+      {blogs ?
         blogs.map((blog) => (
           <BlogCard key={blog.title} {...blog} />
         ))
         :
         <h1>Blogs not found.</h1>
       }
-		</div>
-	</div>
+    </div>
+  </div>
 }
 
 export default HomePage
